@@ -66,6 +66,7 @@ header {
   display: flex;
   flex-direction: column;
   row-gap: 1.2rem;
+  
 }
 
 .sign-password {
@@ -87,6 +88,10 @@ header {
 
 .sign-input:focus {
   border-color: var(--primary);
+}
+
+.email-error-text {
+  color: var(--red);
 }
 
 .eye-button {
@@ -149,6 +154,11 @@ header {
 .kakao-link {
   padding-top: 0.2rem;
   background-color: #f5e14b;
+}
+
+.crossed-eye {
+  background-image: url(/images/Eye_open_font_awesome.svg.png); 
+  background-size: cover;
 }
 
 @media (max-width: 768px) {

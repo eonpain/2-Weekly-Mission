@@ -91,7 +91,7 @@ article {
 
 section {
   display: grid;
-  justify-content: center;
+  align-items: center;
   column-gap: 15.7rem;
   row-gap: 1rem;
   width: 100%;
@@ -123,6 +123,8 @@ section:nth-of-type(even) {
   font-weight: 700;
   line-height: 5.8rem;
   letter-spacing: -0.03rem;
+  margin-bottom: 15px;
+
 }
 
 .title-1-gradient {
@@ -209,6 +211,7 @@ footer {
     width: 385px;
     height: 315px;
   }
+
 }
 
 @media (max-width: 768px) {

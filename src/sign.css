@@ -90,6 +90,14 @@ header {
   border-color: var(--primary);
 }
 
+.border-gray {
+  border-color: var(--gray20);
+}
+
+.border-red {
+  border-color: var(--red);
+}
+
 .email-error-text {
   color: var(--red);
 }

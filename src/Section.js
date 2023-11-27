@@ -23,12 +23,13 @@ function Section() {
       <div className="sectionContainer">
         {userData ? (
           <div className="sectionContent">
-            <div className="userImg">
+            {/* <div className="userImg"> */}
               <img
+              className="userprofileimg"
                 src={userData.folder.owner.profileImageSource}
                 alt="유저프로필사진"
               />
-            </div>
+            {/* </div> */}
             <span className="userName">{userData.folder.owner.name}</span>
             <span className="favorite">{userData.folder.name}</span>
           </div>

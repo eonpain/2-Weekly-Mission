@@ -92,9 +92,10 @@ header {
   line-height: 10px;
 }
 
+.userprofileimg {
+  width: 50px;
+}
 .profileImg img {
-  width: 10px;
-  height: 10px;
   vertical-align: middle;
 }
 
@@ -213,6 +214,7 @@ article {
   display: flex;
   margin: 0 auto 40px;
   width: 1028px;
+  max-width: 106rem;
   padding: 15px 16px;
   justify-content: flex-start;
   border-radius: 10px;
@@ -237,84 +239,6 @@ article {
   grid-template-columns: repeat(3, 1fr); /* 3열로 설정 */
   gap: 25px 20px; /* 아이템 간 여백 조절 */
 }
-
-.card {
-  width: 100%;
-  /* width: 340px;
-  height: 334px; */
-  box-shadow: 0px 5px 25px 0px rgba(0, 0, 0, 0.08);
-}
-
-.card-img-top {
-  display: inline-block;
-  height: 253.746px;
-  flex-shrink: 0;
-  background: url(/), lightgray 50% / cover no-repeat;
-}
-
-/* section {
-  display: grid;
-  align-items: center;
-  column-gap: 15.7rem;
-  row-gap: 1rem;
-  width: 100%;
-  height: 55rem;
-  padding: 50px 0;
-}
-
-section:nth-of-type(odd) {
-  grid-template:
-    ". image"
-    "title image"
-    "description image"
-    ". image"
-    /291px 55rem;
-}
-
-section:nth-of-type(even) {
-  grid-template:
-    "image ."
-    "image title"
-    "image description"
-    "image ."
-    /550px 29.1rem;
-} */
-
-/* .title {
-  grid-area: title;
-  font-size: 4.8rem;
-  font-weight: 700;
-  line-height: 5.8rem;
-  letter-spacing: -0.03rem;
-  margin-bottom: 15px;
-} */
-
-/* .title-1-gradient {
-  background-image: linear-gradient(117deg, #fe8a8a 2.29%, #a4ceff 100%);
-}
-.title-2-gradient {
-  background-image: linear-gradient(304deg, #6fbaff 0%, #ffd88b 100%);
-}
-.title-3-gradient {
-  background-image: linear-gradient(133deg, #2945c7 0%, #dbe1f8 100%);
-}
-.title-4-gradient {
-  background-image: linear-gradient(310deg, #fe578f 0%, #68e8f9 100%);
-} */
-
-/* .description {
-  grid-area: description;
-  font-size: 1.6rem;
-  font-weight: 500;
-  color: #6b6b6b;
-  line-height: 150%;
-} */
-
-/* .content-image {
-  grid-area: image;
-  width: 55rem;
-  height: 45rem;
-} */
 
 footer {
   display: flex;
@@ -358,37 +282,105 @@ footer {
   height: 2rem;
 }
 
+.cardBox {
+  max-width: 106rem;
+  margin: 0 auto 10rem;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+  padding: 0 3.2rem;
+}
+
+.card {
+  width: 100%;
+  max-width: 34rem;
+  height: 33.4rem;
+  border-radius: 1rem;
+  border: 2px solid rgba(0, 0, 0, 0);
+  overflow: hidden;
+  box-shadow: 0px 5px 25px 0px rgba(0, 0, 0, 0.08);
+  margin: 0 auto;
+}
+
+.card:hover {
+  border: 2px solid var(--primary);
+}
+
+.card:hover a .cardImgWrap {
+  transition: all 1s;
+  transform: scale(1.3);
+}
+
+.card:not(hover) a .cardImgWrap {
+  transition: all 1s;
+}
+
+.card .cardImgWrap {
+  width: 100%;
+  height: 60%;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.card img {
+  width: 100%;
+}
+
+.card .nullImg {
+  position: absolute;
+  width: 13rem;
+  opacity: 0.5;
+}
+
+.cardText {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 1.5rem 2rem 1rem;
+  gap: 1rem;
+  position: relative;
+  z-index: 2;
+  background-color: #fff;
+}
+
+.cardText .ago {
+  font-size: 1.3rem;
+}
+
+.cardText .des {
+  font-size: 1.6rem;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: normal;
+}
+
+.cardText .cardDate {
+  font-size: 1.4rem;
+}
+
 @media (max-width: 1124px) {
-  .articleContent {
+  .cardBox {
     grid-template-columns: repeat(
       2,
       1fr
     ); /* 화면 너비가 1124px 이하일 때 2열로 설정 */
-    width: 672px;
-    margin-left: 32px;
-    margin-right: 32px;
   }
 
   .searchBar {
-    width: 672px;
+    /* width: 672px; */
     margin-left: 32px;
     margin-right: 32px;
   }
-
-  /* .hero-header img {
-    width: 650px;
-    height: 383px;
-  } */
 
   div.gnb {
     padding: 20px 32px;
     width: 800px;
   }
-
-  /* .content-image {
-    width: 385px;
-    height: 315px;
-  } */
 }
 
 @media (max-width: 768px) {
@@ -401,11 +393,10 @@ footer {
   }
 
   .searchBar {
-    width: 293px;
+    /* width: 293px; */
   }
 
-  .articleContent {
-    width: 293px;
+  .cardBox {
     grid-template-columns: repeat(1, 1fr);
   }
 

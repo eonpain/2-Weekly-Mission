@@ -28,9 +28,7 @@ function Header() {
           </a>
          {profileData ? (
           <div className="profileBox">
-            <div className="profileImg">
-            <img src={profileData.profileImageSource} alt="프로필 로고" />
-            </div>
+            <img className="userprofileimg" src={profileData.profileImageSource} alt="프로필 로고" />
             <div className="profileText">
               <span>{profileData.email}</span>
             </div>

@@ -7,11 +7,9 @@ function Header() {
   const [profileData, setProfileData] = useState(null);
 
   useEffect(() => {
-    // 프로필 데이터를 가져오는 API 호출
     fetch('https://bootcamp-api.codeit.kr/api/sample/user')
       .then(response => response.json())
       .then(data => {
-        // API에서 받아온 데이터를 상태에 저장
         setProfileData(data);
       })
       .catch(error => {

@@ -392,10 +392,6 @@ footer {
     padding: 13px 32px;
   }
 
-  .searchBar {
-    /* width: 293px; */
-  }
-
   .cardBox {
     grid-template-columns: repeat(1, 1fr);
   }

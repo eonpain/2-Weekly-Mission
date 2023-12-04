@@ -1,4 +1,4 @@
-import "./Folder.css";
+import "./Shared.css";
 import searchImg from "./assets/search.svg";
 
 function Search() {

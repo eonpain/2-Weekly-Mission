@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import "./Folder.css";
+import "./Shared.css";
 import logoIcon from "./assets/logo.svg";
 import nullImg from './assets/bulldog.png'
 import {formatDateString,calculateElapsedTime} from './Time'

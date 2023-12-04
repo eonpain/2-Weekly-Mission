@@ -1,6 +1,5 @@
-import "./Folder.css";
+import "./Shared.css";
 import logoIcon from "./assets/logo.svg";
-// import profileIcon from "./assets/profile.svg";
 import React, { useState, useEffect } from 'react';
 
 function Header() {

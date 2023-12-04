@@ -1,4 +1,4 @@
-import "./Folder.css";
+import "./Shared.css";
 import instagramIcon from "./assets/instagram.svg";
 import youtubeIcon from "./assets/youtube.svg";
 import twitterIcon from "./assets/twitter.svg";

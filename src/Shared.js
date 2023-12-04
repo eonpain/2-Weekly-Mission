@@ -5,7 +5,7 @@ import Card from "./Card";
 import { useEffect, useState } from "react";
 import Search from "./Search";
 
-function App() {
+function Shared() {
   const [cardUser, setCardUser] = useState();
   useEffect(() => {
     fetch("https://bootcamp-api.codeit.kr/api/sample/folder")
@@ -30,4 +30,4 @@ function App() {
   );
 }
 
-export default App;
+export default Shared;

@@ -396,20 +396,6 @@ footer {
     grid-template-columns: repeat(1, 1fr);
   }
 
-  /* .hero-header img {
-    width: 302px;
-    height: 178px;
-    object-fit: cover;
-    padding: 0 32px;
-  } */
-
-  /* .content-image {
-    width: 325px;
-    height: 265px;
-    object-fit: cover;
-    padding: 0 32px;
-  } */
-
   section {
     display: flex;
     flex-direction: column;

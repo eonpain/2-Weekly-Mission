@@ -1,24 +1,32 @@
-import logo from './logo.svg';
-import './App.css';
+import Header from "./Header";
+import Footer from "./Footer";
+import Section from "./Section";
+import Card from "./Card";
+import { useEffect, useState } from "react";
+import Search from "./Search";
 
 function App() {
+  const [cardUser, setCardUser] = useState();
+  useEffect(() => {
+    fetch("https://bootcamp-api.codeit.kr/api/sample/folder")
+      .then((response) => response.json())
+      .then((result) => result.folder.links)
+      .then((carddata) => setCardUser(carddata))
+      .catch((error) => {
+        console.error('Error fetching profile data:', error);
+      });
+  }, []);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <Header />
+      <Section />
+      <Search />
+      <div className="cardBox">
+        {cardUser && cardUser.map((data) => <Card key={data.id} data={data} />)}
+      </div>
+      <Footer></Footer>
+    </>
   );
 }
 

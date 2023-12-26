@@ -333,7 +333,6 @@ export const SearchInput = styled.input`
 
 export const SortContainer = styled.div`
   max-width: 106rem;
-  /* padding: 0 3.2rem; */
   margin: 2.4rem auto;
   display: flex;
   justify-content: space-between;
@@ -353,7 +352,8 @@ export const SortButton = styled.button`
   padding: 0.8rem 1.2rem;
   border-radius: 5px;
   border: 1px solid var(--linkbrary-primary-color, #6d6afe);
-  background: #fff;
+  background: ${(props) => (props.selectSortName === 0 ? "#6D6AFE" : "#fff")};
+  color: ${(props) => (props.selectSortName === 0 ? "#fff" : "black")};
   cursor: pointer;
 `;
 

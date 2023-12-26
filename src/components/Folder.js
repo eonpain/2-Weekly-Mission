@@ -10,20 +10,18 @@ import "../indexCss.css";
 import shareImg from "../Image/share.svg";
 import penImg from "../Image/pen.svg";
 import deleteImg from "../Image/delete.svg";
-import { ShowAll } from "./Api";
+import { ShowAll, ShowFolders, FetchFolderData } from "../Api";
 import { useFoldLink, useLink } from "./Hook";
 
-
 function Folder() {
-  const [selectList, setSelectList] = useState(0);
+  const [selectSortName, setselectSortName] = useState(0);
   const [foldLinkTitle, setFoldLinkTitle] = useState("전체");
   const [sortData, setSortData] = useState([]);
-  // const [cardUser, setCardUser] = useState();
   const [foldLink, setFoldLink] = useState([]);
   const [foldLinkMock, setFoldLinkMock] = useState([]);
 
-  const clickList = (e) => {
-    setSelectList(Number(e.target.value));
+  const clickSortName = (e) => {
+    setselectSortName(Number(e.target.value));
     setFoldLinkTitle(e.target.title);
   };
   const foldLin = async () => {
@@ -35,34 +33,44 @@ function Folder() {
     }
   };
 
-  useFoldLink(selectList, foldLinkMock, setFoldLink);
+  useFoldLink(selectSortName, foldLinkMock, setFoldLink);
   useLink(foldLin);
 
+  useEffect(() => {
+    async function fetchData() {
+      try {
+        const folderData = await FetchFolderData();
+        setSortData(folderData);
+      } catch (error) {
+        console.error("Error fetching folder data:", error);
+      }
+    }
+
+    fetchData();
+  }, []);
 
   useEffect(() => {
-    fetch("https://bootcamp-api.codeit.kr/api/users/1/folders")
-      .then((response) => response.json())
-      .then((result) => result.data)
-      .then((folddata) => setSortData(folddata))
-      .catch((error) => {
-        console.error("Error fetching profile data:", error);
-      });
-  }, []);
-  useEffect(() => {
-    fetch("https://bootcamp-api.codeit.kr/api/sample/folder")
-      .then((response) => response.json())
-      .then((result) => result.folder.links)
-      .then((carddata) => setCardUser(carddata))
-      .catch((error) => {
-        console.error("Error fetching profile data:", error);
-      });
+    async function fetchData() {
+      try {
+        const folderLinks = await ShowFolders();
+        setCardUser(folderLinks);
+      } catch (error) {
+        console.error("Error fetching folder links:", error);
+      }
+    }
+
+    fetchData();
   }, []);
   return (
     <>
       <Header />
       <Section />
       <Search />
-      <SortMenu data={sortData} selectList={selectList} clickList={clickList} />
+      <SortMenu
+        data={sortData}
+        selectSortName={selectSortName}
+        clickSortName={clickSortName}
+      />
       <S.CardTitle>
         <S.CardTitleText>{foldLinkTitle}</S.CardTitleText>
         {foldLinkTitle === "전체" ? (
@@ -84,10 +92,7 @@ function Folder() {
           </S.SortEdit>
         )}
       </S.CardTitle>
-      {/* <S.CardBox>
-        {cardUser && cardUser.map((data) => <Card key={data.id} data={data} />)}
-      </S.CardBox> */}
-            {foldLink.length > 0 ? (
+      {foldLink.length > 0 ? (
         <S.CardBox>
           {foldLink.map((data) => {
             return <Card data={data} key={data.id} />;

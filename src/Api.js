@@ -30,5 +30,5 @@ export async function FetchFolderData() {
 export async function ShowAll() {
   const response = await fetch("https://bootcamp-api.codeit.kr/api/users/1/links");
   const data = await response.json();
-  return data;
+  return data.data;
 }

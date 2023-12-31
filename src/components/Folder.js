@@ -1,66 +1,82 @@
+import React, { useState, useEffect } from "react";
 import Header from "./Header";
 import Footer from "./Footer";
 import Section from "./Section";
 import SortMenu from "./SortMenu";
 import Card from "./Card";
-import { useEffect, useState } from "react";
 import Search from "./Search";
 import * as S from "./Styled";
-import "../indexCss.css";
+import { ShowFolders, FetchFolderData } from "../Api";
+import { useFoldLink, useLink } from "./Hook";
+import { ChangeNameModal, DeleteFolder, ShareModal } from "./modal/index";
 import shareImg from "../Image/share.svg";
 import penImg from "../Image/pen.svg";
 import deleteImg from "../Image/delete.svg";
-import { ShowAll, ShowFolders, FetchFolderData } from "../Api";
-import { useFoldLink, useLink } from "./Hook";
 
 function Folder() {
-  const [selectSortName, setselectSortName] = useState(0);
+  const [selectSortName, setSelectSortName] = useState(0);
   const [foldLinkTitle, setFoldLinkTitle] = useState("전체");
   const [sortData, setSortData] = useState([]);
-  const [foldLink, setFoldLink] = useState([]);
   const [foldLinkMock, setFoldLinkMock] = useState([]);
+  const [modalContent, setModalContent] = useState(null);
+  const [modalOpen, setModalOpen] = useState(false);
 
   const clickSortName = (e) => {
-    setselectSortName(Number(e.target.value));
+    setSelectSortName(Number(e.target.value));
     setFoldLinkTitle(e.target.title);
   };
-  const foldLin = async () => {
+
+  const fetchFolderData = async () => {
     try {
-      const result = await ShowAll();
+      const folderData = await FetchFolderData();
+      setSortData(folderData);
+    } catch (error) {
+      console.error("Error fetching folder data:", error);
+    }
+  };
+
+  const fetchFolders = async () => {
+    try {
+      const result = await ShowFolders();
       setFoldLinkMock(result.data);
     } catch (error) {
       console.log(error);
     }
   };
 
-  useFoldLink(selectSortName, foldLinkMock, setFoldLink);
-  useLink(foldLin);
+  useFoldLink(selectSortName, foldLinkMock);
+  const foldLink = useFoldLink(selectSortName, foldLinkMock);
+
+  // useLink(fetchFolders);
 
   useEffect(() => {
-    async function fetchData() {
-      try {
-        const folderData = await FetchFolderData();
-        setSortData(folderData);
-      } catch (error) {
-        console.error("Error fetching folder data:", error);
-      }
-    }
-
-    fetchData();
+    fetchFolderData();
   }, []);
 
-  useEffect(() => {
-    async function fetchData() {
-      try {
-        const folderLinks = await ShowFolders();
-        setCardUser(folderLinks);
-      } catch (error) {
-        console.error("Error fetching folder links:", error);
-      }
-    }
+  // useEffect(() => {
+  //   fetchFolders();
+  // }, []);
 
-    fetchData();
-  }, []);
+  const handleShareClick = () => {
+    setModalContent("ShareModal");
+    setModalOpen(true);
+  };
+
+  const handleRenameClick = () => {
+    setModalContent("ChangeNameModal");
+    setModalOpen(true);
+  };
+
+  const handleDeleteClick = () => {
+    setModalContent("DeleteFolderModal");
+    setModalOpen(true);
+  };
+
+  const handleCloseModal = () => {
+    setModalContent(null);
+    setModalOpen(false);
+  };
+
   return (
     <>
       <Header />
@@ -76,23 +92,34 @@ function Folder() {
         {foldLinkTitle === "전체" ? (
           <></>
         ) : (
-          <S.SortEdit>
-            <S.SortEditContent>
-              <img src={shareImg} alt={shareImg} />
-              <p>공유</p>
-            </S.SortEditContent>
-            <S.SortEditContent>
-              <img src={penImg} alt={penImg} />
-              <p>이름 변경</p>
-            </S.SortEditContent>
-            <S.SortEditContent>
-              <img src={deleteImg} alt={deleteImg} />
-              <p>삭제</p>
-            </S.SortEditContent>
-          </S.SortEdit>
+          <>
+            <S.SortEdit>
+              <S.SortEditContent onClick={handleShareClick}>
+                <img src={shareImg} alt={shareImg} />
+                <p>공유</p>
+              </S.SortEditContent>
+              <S.SortEditContent onClick={handleRenameClick}>
+                <img src={penImg} alt={penImg} />
+                <p>이름 변경</p>
+              </S.SortEditContent>
+              <S.SortEditContent onClick={handleDeleteClick}>
+                <img src={deleteImg} alt={deleteImg} />
+                <p>삭제</p>
+              </S.SortEditContent>
+            </S.SortEdit>
+            {modalOpen && modalContent === "ShareModal" && (
+              <ShareModal onClose={handleCloseModal} />
+            )}
+            {modalOpen && modalContent === "ChangeNameModal" && (
+              <ChangeNameModal onClose={handleCloseModal} />
+            )}
+            {modalOpen && modalContent === "DeleteFolderModal" && (
+              <DeleteFolder onClose={handleCloseModal} />
+            )}
+          </>
         )}
       </S.CardTitle>
-      {foldLink.length > 0 ? (
+      {foldLink && foldLink.length > 0 ? (
         <S.CardBox>
           {foldLink.map((data) => {
             return <Card data={data} key={data.id} />;
@@ -101,7 +128,7 @@ function Folder() {
       ) : (
         <S.NoData>저장된 링크가 없습니다.</S.NoData>
       )}
-      <Footer></Footer>
+      <Footer />
     </>
   );
 }

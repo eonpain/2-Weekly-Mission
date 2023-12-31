@@ -1,19 +1,28 @@
-import { useEffect } from "react";
+import { useState, useEffect } from "react";
+import { ShowAll } from "../Api";
 
-export const useFoldLink = (selectSortName, foldLinkMock, setFoldLink) => {
+export const useFoldLink = (selectSortName, foldLinkMock) => {
+  const [foldLink, setFoldLink] = useState([]);
+
   useEffect(() => {
-    setFoldLink(() => {
-      if (selectSortName === 0) {
-        return foldLinkMock;
-      } else {
-        return foldLinkMock.filter((item) => item.folder_id === selectSortName);
+    const fetchFolders = async () => {
+      try {
+        const result = await ShowAll();
+        if (selectSortName === 0) {
+          setFoldLink(result);
+        } else {
+          const filteredFolders = result.filter(
+            (item) => item.folder_id === selectSortName
+          );
+          setFoldLink(filteredFolders);
+        }
+      } catch (error) {
+        console.error("Error fetching folders:", error);
       }
-    });
-  }, [selectSortName, foldLinkMock]);
-};
+    };
 
-export const useLink = (foldLin) => {
-  useEffect(() => {
-    foldLin();
-  }, []);
+    fetchFolders();
+  }, [selectSortName, foldLinkMock]);
+
+  return foldLink;
 };

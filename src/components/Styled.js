@@ -352,8 +352,8 @@ export const SortButton = styled.button`
   padding: 0.8rem 1.2rem;
   border-radius: 5px;
   border: 1px solid var(--linkbrary-primary-color, #6d6afe);
-  background: ${(props) => (props.selectSortName === 0 ? "#6D6AFE" : "#fff")};
-  color: ${(props) => (props.selectSortName === 0 ? "#fff" : "black")};
+  background: ${(props) => (props.$isSelected ? "#6D6AFE" : "#fff")};
+  color: ${(props) => (props.$isSelected ? "#fff" : "black")};
   cursor: pointer;
 `;
 
@@ -373,6 +373,7 @@ export const SortInput = styled.input`
 export const SortPlusImg = styled.img`
   width: 16px;
   height: 16px;
+  cursor: pointer;
 `;
 
 export const CardTitle = styled.div`
@@ -558,6 +559,7 @@ export const kebabOption = styled.div`
   font-size: 1.4rem;
   line-height: 3.2rem;
   text-align: center;
+  cursor: pointer;
   &:last-child {
     background: #e7effb;
     color: #6d6afe;

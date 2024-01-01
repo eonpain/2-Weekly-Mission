@@ -41,10 +41,6 @@ export function AddFolderModal({ onClose }) {
   );
 }
 
-// const kakao = "kakao";
-// const facebook = "facebook";
-// const urlCopy = "urlCopy";
-
 export function ShareModal({ onClose }) {
   const handleCloseModal = () => {
     onClose();

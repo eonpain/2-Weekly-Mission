@@ -198,26 +198,6 @@ export const LinkAddText = styled.span`
   font-weight: 600;
   line-height: normal;
 `;
-// export const UserName = styled.span`
-//   color: #000;
-//   font-family: Pretendard;
-//   font-size: 16px;
-//   font-style: normal;
-//   font-weight: 400;
-//   line-height: 24px;
-// `;
-
-// export const Favorite = styled.span`
-//   margin-top: 20px;
-//   color: #000;
-//   text-align: center;
-//   font-feature-settings: "clig" off, "liga" off;
-//   font-family: Pretendard;
-//   font-size: 40px;
-//   font-style: normal;
-//   font-weight: 600;
-//   line-height: normal;
-// `;
 
 export const Footer = styled.footer`
   display: flex;
@@ -281,8 +261,6 @@ export const Sns = styled.div`
 `;
 
 export const Article = styled.article`
-  /* padding-top: 7rem;
-  padding-bottom: 12rem; */
   margin-bottom: 40px;
 
   & .articleContainer {
@@ -318,7 +296,6 @@ export const SearchBar = styled.div`
   border: 1px solid #f5f5f5;
 
   @media (max-width: 1124px) {
-    /* width: 672px; */
     margin-left: 32px;
     margin-right: 32px;
   }
@@ -436,10 +413,6 @@ export const Card = styled.div`
     justify-content: center;
     align-items: center;
   }
-
-  /* & img {
-    width: 100%;
-  } */
 
   & .nullImg {
     position: absolute;

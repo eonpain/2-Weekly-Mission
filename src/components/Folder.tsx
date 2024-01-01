@@ -6,43 +6,44 @@ import SortMenu from "./SortMenu";
 import Card from "./Card";
 import Search from "./Search";
 import * as S from "./Styled";
-import { ShowFolders, FetchFolderData } from "../Api";
-import { useFoldLink, useLink } from "./Hook";
+import { ShowFolders, FetchFolderData } from "../utils/Api";
+import { useFoldLink } from "./Hook";
 import { ChangeNameModal, DeleteFolder, ShareModal } from "./modal/index";
-import shareImg from "../Image/share.svg";
-import penImg from "../Image/pen.svg";
-import deleteImg from "../Image/delete.svg";
+import shareImg from "@images/share.svg";
+import penImg from "@images/pen.svg";
+import deleteImg from "@images/delete.svg";
+import { FolderData } from "../utils/type";
 
 function Folder() {
   const [selectSortName, setSelectSortName] = useState(0);
   const [foldLinkTitle, setFoldLinkTitle] = useState("전체");
-  const [sortData, setSortData] = useState([]);
+  const [sortData, setSortData] = useState<FolderData[]>([]);
   const [foldLinkMock, setFoldLinkMock] = useState([]);
   const [modalContent, setModalContent] = useState(null);
   const [modalOpen, setModalOpen] = useState(false);
 
-  const clickSortName = (e) => {
-    setSelectSortName(Number(e.target.value));
-    setFoldLinkTitle(e.target.title);
+  const clickSortName = (e: React.MouseEvent<HTMLButtonElement>) => {
+    setSelectSortName(Number(e.currentTarget.value));
+    setFoldLinkTitle(e.currentTarget.title);
   };
 
   const fetchFolderData = async () => {
     try {
-      const folderData = await FetchFolderData();
+      const folderData: FolderData[] = await FetchFolderData();
       setSortData(folderData);
     } catch (error) {
       console.error("Error fetching folder data:", error);
     }
   };
 
-  const fetchFolders = async () => {
-    try {
-      const result = await ShowFolders();
-      setFoldLinkMock(result.data);
-    } catch (error) {
-      console.log(error);
-    }
-  };
+  // const fetchFolders = async () => {
+  //   try {
+  //     const result = await ShowFolders();
+  //     setFoldLinkMock(result.data);
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
+  // };
 
   useFoldLink(selectSortName, foldLinkMock);
   const foldLink = useFoldLink(selectSortName, foldLinkMock);

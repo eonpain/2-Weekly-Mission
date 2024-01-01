@@ -2,7 +2,7 @@ import { useState } from "react";
 import * as S from "./Styled";
 import "../indexCss.css";
 import sortPlusImg from "../Image/add.svg";
-import { AddFolderModal } from "../components/modal/index";
+import { AddFolderModal } from "./modal/index";
 
 function SortMenu({ data, clickSortName, selectSortName }) {
   const [modalContent, setModalContent] = useState(null);

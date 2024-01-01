@@ -6,19 +6,19 @@ import SortMenu from "./SortMenu";
 import Card from "./Card";
 import Search from "./Search";
 import * as S from "./Styled";
-import { ShowFolders, FetchFolderData } from "../utils/Api";
+import { ShowAll, FetchFolderData } from "../utils/Api";
 import { useFoldLink } from "./Hook";
 import { ChangeNameModal, DeleteFolder, ShareModal } from "./modal/index";
 import shareImg from "../Image/share.svg";
 import penImg from "../Image/pen.svg";
 import deleteImg from "../Image/delete.svg";
-import { FolderData } from "../utils/type";
+import { FolderData, LinkData } from "../utils/type";
 
 function Folder() {
   const [selectSortName, setSelectSortName] = useState<number>(0);
   const [foldLinkTitle, setFoldLinkTitle] = useState<string>("전체");
   const [sortData, setSortData] = useState<FolderData[]>([]);
-  const [foldLinkMock, setFoldLinkMock] = useState([]);
+  const [linkData, setLinkData] = useState<LinkData[]>([]);
   const [modalContent, setModalContent] = useState<string | null>(null);
   const [modalOpen, setModalOpen] = useState(false);
 
@@ -36,27 +36,25 @@ function Folder() {
     }
   };
 
-  // const fetchFolders = async () => {
-  //   try {
-  //     const result = await ShowFolders();
-  //     setFoldLinkMock(result.data);
-  //   } catch (error) {
-  //     console.log(error);
-  //   }
-  // };
+  const fetchLinkData = async () => {
+    try {
+      const result: LinkData[] = await ShowAll();
+      setLinkData(result);
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
-  useFoldLink(selectSortName, foldLinkMock);
-  const foldLink = useFoldLink(selectSortName, foldLinkMock);
-
-  // useLink(fetchFolders);
+  useFoldLink(selectSortName);
+  const foldLink = useFoldLink(selectSortName);
 
   useEffect(() => {
     fetchFolderData();
   }, []);
 
-  // useEffect(() => {
-  //   fetchFolders();
-  // }, []);
+  useEffect(() => {
+    fetchLinkData();
+  }, []);
 
   const handleShareClick = () => {
     setModalContent("ShareModal");

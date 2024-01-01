@@ -283,7 +283,7 @@ export const SearchBar = styled.div`
   width: 1028px;
   max-width: 106rem;
   padding: 15px 16px;
-  justify-content: flex-start;
+  justify-content: space-between;
   border-radius: 10px;
   background: #f5f5f5;
   border: 1px solid #f5f5f5;
@@ -292,6 +292,12 @@ export const SearchBar = styled.div`
     margin-left: 32px;
     margin-right: 32px;
   }
+`;
+
+export const SearchButton = styled.img`
+  width: 16px;
+  height: 16px;
+  cursor: pointer;
 `;
 
 export const SearchResultWrapper = styled.div`

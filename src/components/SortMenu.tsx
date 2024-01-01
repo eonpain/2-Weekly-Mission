@@ -3,10 +3,17 @@ import * as S from "./Styled";
 import "../indexCss.css";
 import sortPlusImg from "../Image/add.svg";
 import { AddFolderModal } from "./modal/index";
+import { FolderData } from "../utils/type";
 
-function SortMenu({ data, clickSortName, selectSortName }) {
-  const [modalContent, setModalContent] = useState(null);
-  const [modalOpen, setModalOpen] = useState(false);
+type SortMenuProps = {
+  data: FolderData[];
+  clickSortName: React.MouseEventHandler<HTMLButtonElement>;
+  selectSortName: number;
+};
+
+const SortMenu: React.FC<SortMenuProps> = ({ data, clickSortName, selectSortName }) => {
+  const [modalContent, setModalContent] = useState<string | null>(null);
+  const [modalOpen, setModalOpen] = useState<boolean>(false);
 
   const handleFolderAdd = () => {
     setModalContent("AddFolderModal");

@@ -6,14 +6,15 @@ import KebabImg from "../Image/kebab.svg";
 import { formatDateString, calculateElapsedTime } from "./Time";
 import * as S from "./Styled";
 import { DeleteLink, AddToFolderModal } from "./modal";
+import { LinkData } from "@utils/type";
 
-function Card({ data }) {
+function Card({ data }: { data: LinkData }) {
   const formattedDate = formatDateString(data.created_at);
   const [imgNull, setImgNull] = useState("");
   const createdTime = calculateElapsedTime(data.created_at);
   const [kebabBool, setKebabBool] = useState(false);
   const [ago, setAgo] = useState("");
-  const [modalContent, setModalContent] = useState(null);
+  const [modalContent, setModalContent] = useState<string | null>(null);
   const [modalOpen, setModalOpen] = useState(false);
 
   const handleKebabClick = () => {
@@ -28,7 +29,7 @@ function Card({ data }) {
     }
   };
 
-  const calculateAgo = (createdTime) => {
+  const calculateAgo = (createdTime: number) => {
     if (createdTime < 2) {
       return "1 minute ago";
     } else if (createdTime <= 59) {

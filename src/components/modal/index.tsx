@@ -4,7 +4,14 @@ import kakaoImg from "../../Image/kakao.svg";
 import facebookImg from "../../Image/facebookBlue.svg";
 import urlLinkImg from "../../Image/link.svg";
 
-export function ChangeNameModal({ onClose }) {
+declare global {
+  interface Window {
+    Kakao: any;
+  }
+}
+type OnCloseFunction = () => void;
+
+export function ChangeNameModal({ onClose }: { onClose: OnCloseFunction }) {
   const handleCloseModal = () => {
     onClose();
   };
@@ -23,7 +30,7 @@ export function ChangeNameModal({ onClose }) {
   );
 }
 
-export function AddFolderModal({ onClose }) {
+export function AddFolderModal({ onClose }: { onClose: OnCloseFunction }) {
   const handleCloseModal = () => {
     onClose();
   };
@@ -41,11 +48,11 @@ export function AddFolderModal({ onClose }) {
   );
 }
 
-export function ShareModal({ onClose }) {
+export function ShareModal({ onClose }: { onClose: OnCloseFunction }) {
   const handleCloseModal = () => {
     onClose();
   };
-
+  
   const host = window.location.host;
   const userId = 1;
   const folderId = 1;
@@ -129,7 +136,7 @@ export function ShareModal({ onClose }) {
   );
 }
 
-export function DeleteFolder({ onClose }) {
+export function DeleteFolder({ onClose }: { onClose: OnCloseFunction }) {
   const handleCloseModal = () => {
     onClose();
   };
@@ -149,7 +156,7 @@ export function DeleteFolder({ onClose }) {
   );
 }
 
-export function DeleteLink({ onClose }) {
+export function DeleteLink({ onClose }: { onClose: OnCloseFunction }) {
   const handleCloseModal = () => {
     onClose();
   };
@@ -169,12 +176,12 @@ export function DeleteLink({ onClose }) {
   );
 }
 
-export function AddToFolderModal({ onClose }) {
+export function AddToFolderModal({ onClose }: { onClose: OnCloseFunction }) {
   const handleCloseModal = () => {
     onClose();
   };
-  const [selected, setSelected] = useState(null);
-  const handleSelected = (link) => {
+  const [selected, setSelected] = useState<string | null>(null);
+  const handleSelected = (link: string) => {
     setSelected(link);
   };
   return (
@@ -190,7 +197,7 @@ export function AddToFolderModal({ onClose }) {
             (link, index) => (
               <S.FolderList
                 key={index}
-                selected={selected === link}
+                // selected={selected === link}
                 onClick={() => handleSelected(link)}
               >
                 <p>{link}</p> <S.LinkCount>7개 링크</S.LinkCount>

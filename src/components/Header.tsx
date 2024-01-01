@@ -1,19 +1,34 @@
 import logoIcon from "../Image/logo.svg";
 import React, { useState, useEffect } from "react";
 import * as S from "./Styled";
+import { ProfileApi } from "../utils/Api";
+import { ProfileData } from "@utils/type";
 
 function Header() {
-  const [profileData, setProfileData] = useState(null);
+  const [profileData, setProfileData] = useState<ProfileData | null>(null);
+
+  // useEffect(() => {
+  //   fetch("https://bootcamp-api.codeit.kr/api/users/1")
+  //     .then((response) => response.json())
+  //     .then((data) => {
+  //       setProfileData(data);
+  //     })
+  //     .catch((error) => {
+  //       console.error("Error fetching profile data:", error);
+  //     });
+  // }, []);
+
+  const fetchProfileData = async () => {
+    try {
+      const userData: ProfileData = await ProfileApi();
+      setProfileData(userData);
+    } catch (error) {
+      console.error("Error fetching folder data:", error);
+    }
+  };
 
   useEffect(() => {
-    fetch("https://bootcamp-api.codeit.kr/api/users/1")
-      .then((response) => response.json())
-      .then((data) => {
-        setProfileData(data);
-      })
-      .catch((error) => {
-        console.error("Error fetching profile data:", error);
-      });
+    fetchProfileData();
   }, []);
 
   return (

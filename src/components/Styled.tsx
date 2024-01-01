@@ -1,5 +1,9 @@
 import styled from "styled-components";
 
+type SortButtonProps = {
+  $isSelected: boolean;
+};
+
 export const Nav = styled.nav`
   display: flex;
   justify-content: center;
@@ -102,7 +106,6 @@ export const SectionContainer = styled.div`
   display: flex;
   width: 1440px;
   padding: 60px 320px 90px;
-  margin-bottom: 40px;
   justify-content: center;
   align-items: center;
   vertical-align: middle;
@@ -262,16 +265,6 @@ export const Sns = styled.div`
 
 export const Article = styled.article`
   margin-bottom: 40px;
-
-  & .articleContainer {
-    display: flex;
-    flex-direction: column;
-    width: 1060px;
-    justify-content: center;
-    align-items: center;
-    margin: 40px auto;
-    gap: 40px;
-  }
 `;
 
 export const ArticleContainer = styled.div`
@@ -286,7 +279,7 @@ export const ArticleContainer = styled.div`
 
 export const SearchBar = styled.div`
   display: flex;
-  margin: 0 auto 40px;
+  margin: 0 auto;
   width: 1028px;
   max-width: 106rem;
   padding: 15px 16px;
@@ -298,6 +291,37 @@ export const SearchBar = styled.div`
   @media (max-width: 1124px) {
     margin-left: 32px;
     margin-right: 32px;
+  }
+`;
+
+export const SearchResultWrapper = styled.div`
+  display: flex;
+  width: 381px;
+  height: 38px;
+  align-items: center;
+  justify-content: flex-start;
+  margin: 0 auto;
+
+  & h1 {
+    color: var(--Linkbrary-gray100, #373740);
+    font-family: Pretendard;
+    font-size: 32px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+    letter-spacing: -0.2px;
+    display: inline;
+  }
+
+  & h2 {
+    color: var(--Linkbrary-gray60, #9fa6b2);
+    font-family: Pretendard;
+    font-size: 32px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+    letter-spacing: -0.2px;
+    display: inline;
   }
 `;
 
@@ -324,7 +348,7 @@ export const SortBox = styled.div`
   flex-wrap: wrap;
 `;
 
-export const SortButton = styled.button`
+export const SortButton = styled.button<SortButtonProps>`
   font-size: 1.6rem;
   padding: 0.8rem 1.2rem;
   border-radius: 5px;

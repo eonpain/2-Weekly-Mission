@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, MouseEventHandler } from "react";
 import Header from "./Header";
 import Footer from "./Footer";
 import Section from "./Section";
@@ -9,22 +9,22 @@ import * as S from "./Styled";
 import { ShowFolders, FetchFolderData } from "../utils/Api";
 import { useFoldLink } from "./Hook";
 import { ChangeNameModal, DeleteFolder, ShareModal } from "./modal/index";
-import shareImg from "@images/share.svg";
-import penImg from "@images/pen.svg";
-import deleteImg from "@images/delete.svg";
+import shareImg from "../Image/share.svg";
+import penImg from "../Image/pen.svg";
+import deleteImg from "../Image/delete.svg";
 import { FolderData } from "../utils/type";
 
 function Folder() {
-  const [selectSortName, setSelectSortName] = useState(0);
-  const [foldLinkTitle, setFoldLinkTitle] = useState("전체");
+  const [selectSortName, setSelectSortName] = useState<number>(0);
+  const [foldLinkTitle, setFoldLinkTitle] = useState<string>("전체");
   const [sortData, setSortData] = useState<FolderData[]>([]);
   const [foldLinkMock, setFoldLinkMock] = useState([]);
-  const [modalContent, setModalContent] = useState(null);
+  const [modalContent, setModalContent] = useState<string | null>(null);
   const [modalOpen, setModalOpen] = useState(false);
 
-  const clickSortName = (e: React.MouseEvent<HTMLButtonElement>) => {
-    setSelectSortName(Number(e.currentTarget.value));
-    setFoldLinkTitle(e.currentTarget.title);
+  const clickSortName: React.MouseEventHandler<HTMLButtonElement> = (event) => {
+    setSelectSortName(Number(event.currentTarget.value));
+    setFoldLinkTitle(event.currentTarget.title);
   };
 
   const fetchFolderData = async () => {

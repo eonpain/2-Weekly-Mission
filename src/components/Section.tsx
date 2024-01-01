@@ -4,7 +4,7 @@ import linkImg from "../Image/link.svg";
 import { AddToFolderModal } from "./modal";
 
 function Section() {
-  const [modalContent, setModalContent] = useState(null);
+  const [modalContent, setModalContent] = useState<string | null>(null);
   const [modalOpen, setModalOpen] = useState(false);
 
   const handleAddToFolderClick = () => {

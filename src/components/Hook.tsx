@@ -1,8 +1,9 @@
 import { useState, useEffect } from "react";
 import { ShowAll } from "../utils/Api";
+import { LinkData } from "@utils/type";
 
-export const useFoldLink = (selectSortName, foldLinkMock) => {
-  const [foldLink, setFoldLink] = useState([]);
+export const useFoldLink = (selectSortName: number, foldLinkMock: any) => {
+  const [foldLink, setFoldLink] = useState<LinkData[]>([]);
 
   useEffect(() => {
     const fetchFolders = async () => {

@@ -1,6 +1,14 @@
 import styled from "styled-components";
 import closeImg from "../../Image/_close.png";
 
+type ModalButtonProps = {
+  $redColor?: boolean;
+};
+
+type ShareImgProps = {
+  $shareApi?: string;
+}
+
 export const ModalBlur = styled.div`
   display: flex;
   justify-content: center;
@@ -48,7 +56,7 @@ export const ContentInput = styled.input`
   background: var(--Linkbrary-white, #fff);
 `;
 
-export const Button = styled.button`
+export const Button = styled.button<ModalButtonProps>`
   display: flex;
   width: 280px;
   padding: 16px 20px;
@@ -138,7 +146,7 @@ export const FeatureContent = styled.div`
   gap: 10px;
 `;
 
-export const ShareImg = styled.div`
+export const ShareImg = styled.div<ShareImgProps>`
   display: flex;
   padding: 12px;
   justify-content: center;

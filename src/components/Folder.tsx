@@ -7,7 +7,7 @@ import Card from "./Card";
 import Search from "./Search";
 import * as S from "./Styled";
 import { ShowAll, FetchFolderData } from "../utils/Api";
-import { useFoldLink } from "./Hook";
+import { useFoldLink } from "./hooks/useFolder";
 import { ChangeNameModal, DeleteFolder, ShareModal } from "./modal/index";
 import shareImg from "../Image/share.svg";
 import penImg from "../Image/pen.svg";

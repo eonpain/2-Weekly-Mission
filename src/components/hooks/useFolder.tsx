@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { useLocation } from "react-router-dom";
-import { ShowAll } from "../utils/Api";
+import { ShowAll } from "../../utils/Api";
 import { LinkData } from "@utils/type";
 
 export const useFoldLink = (selectSortName: number) => {

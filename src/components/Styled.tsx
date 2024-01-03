@@ -277,7 +277,7 @@ export const ArticleContainer = styled.div`
   gap: 40px;
 `;
 
-export const SearchBar = styled.div`
+export const SearchBar = styled.form`
   display: flex;
   margin: 0 auto;
   width: 1028px;
@@ -294,7 +294,7 @@ export const SearchBar = styled.div`
   }
 `;
 
-export const SearchButton = styled.img`
+export const SearchImage = styled.img`
   width: 16px;
   height: 16px;
   cursor: pointer;

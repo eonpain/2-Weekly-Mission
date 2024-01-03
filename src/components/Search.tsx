@@ -25,7 +25,7 @@ function Search() {
     localStorage.setItem("searchValue", newValue);
   };
 
-  const search: React.MouseEventHandler<HTMLImageElement> = (e) => {
+  const search: React.MouseEventHandler<HTMLFormElement> = (e) => {
     e.preventDefault();
     setSearchParams({ search: searchValue });
   };
@@ -38,9 +38,11 @@ function Search() {
 
   return (
     <S.ArticleContainer>
-      <S.SearchBar>
+      <S.SearchBar onClick={search}>
         <div>
-          <S.SearchButton src={searchImg} alt="검색이미지" onClick={search} />
+          <button type="submit">
+            <S.SearchImage src={searchImg} alt="검색이미지" />
+          </button>
           <S.SearchInput
             placeholder="링크를 검색해보세요."
             value={searchValue}
@@ -54,11 +56,13 @@ function Search() {
           </Link>
         ) : null}
       </S.SearchBar>
-      <S.SearchResultWrapper>
-        <h1>{searchValue}</h1>
-        <h2>으로 검색한 결과입니다</h2>
-      </S.SearchResultWrapper>
+      {searchValue && (
+        <S.SearchResultWrapper>
+          <h1>{searchValue}</h1>
+          <h2>으로 검색한 결과입니다</h2>
+        </S.SearchResultWrapper>
+      )}
     </S.ArticleContainer>
   );
-};
+}
 export default Search;

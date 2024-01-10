@@ -1,6 +1,6 @@
 import { ComponentPropsWithRef, FocusEvent, useState } from "react";
 import Icon from "../Icon";
-import styles from "./Input.module.css";
+import styles from "./input.module.css";
 
 interface Props
   extends Omit<ComponentPropsWithRef<"input">, "type" | "className"> {
@@ -9,7 +9,7 @@ interface Props
 }
 
 export default function Input({
-  type = "text",
+  type = "password",
   error,
   onBlur = () => {},
   ...props

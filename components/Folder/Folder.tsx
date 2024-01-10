@@ -10,6 +10,7 @@ import { ShowAll, FetchFolderData } from "../../pages/folder/[id]";
 import { useFoldLink } from "./hooks/useFolder";
 import { ChangeNameModal, DeleteFolder, ShareModal } from "./modal/index";
 import { FolderData, LinkData } from "../../pages/folder/type";
+import Input from "../common/input/input";
 
 function Folder() {
   const [selectSortName, setSelectSortName] = useState<number>(0);

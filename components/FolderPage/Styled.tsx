@@ -124,27 +124,6 @@ export const SectionContainer = styled.div`
     & img {
       width: 50px;
     }
-
-    /* & .userName {
-      color: #000;
-      font-family: Pretendard;
-      font-size: 16px;
-      font-style: normal;
-      font-weight: 400;
-      line-height: 24px;
-    }
-
-    & .favorite {
-      margin-top: 20px;
-      color: #000;
-      text-align: center;
-      font-feature-settings: "clig" off, "liga" off;
-      font-family: Pretendard;
-      font-size: 40px;
-      font-style: normal;
-      font-weight: 600;
-      line-height: normal;
-    } */
   }
 `;
 

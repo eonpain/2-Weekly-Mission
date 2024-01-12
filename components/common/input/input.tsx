@@ -1,6 +1,7 @@
-import { ComponentPropsWithRef, FocusEvent, useState } from "react";
+import { ComponentPropsWithRef } from "react";
+import { useInput } from "../../FolderPage/hooks/useInput";
 import Icon from "../Icon";
-import styles from "./Input.module.css";
+import styles from "./input.module.css";
 
 interface Props
   extends Omit<ComponentPropsWithRef<"input">, "type" | "className"> {
@@ -9,24 +10,17 @@ interface Props
 }
 
 export default function Input({
-  type = "text",
+  type = "password",
   error,
-  onBlur = () => {},
+  onBlur,
   ...props
 }: Props) {
-  const [passwordVisible, setPasswordVisible] = useState(false);
-  const handleClickPasswordToggle = () => {
-    setPasswordVisible((pv) => !pv);
-  };
-  let inputType = "text";
-
-  if (type === "password") {
-    inputType = passwordVisible ? "text" : "password";
-  }
-
-  const handleBlurInput = (e: FocusEvent<HTMLInputElement>) => {
-    onBlur(e);
-  };
+  const {
+    inputType,
+    passwordVisible,
+    handleClickPasswordToggle,
+    handleBlurInput,
+  } = useInput({ type, onBlur });
 
   return (
     <div className={styles.container}>
@@ -37,7 +31,7 @@ export default function Input({
         <input
           className={styles.input}
           type={inputType}
-          onBlur={handleBlurInput}
+          onBlur={handleBlurInput} // useInput 훅에서 반환한 onBlur 함수를 사용
           {...props}
         />
         {type === "password" ? (
@@ -59,4 +53,3 @@ export default function Input({
     </div>
   );
 }
-

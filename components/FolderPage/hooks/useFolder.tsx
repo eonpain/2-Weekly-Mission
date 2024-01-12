@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { useRouter } from "next/router";
-import { ShowAll } from "../../../pages/folder/[id]";
+import { showAll } from "../../../pages/folder/folder.api.ts";
 import { LinkData } from "../../../pages/folder/type";
 
 export const useFoldLink = (selectSortName: number) => {
@@ -11,8 +11,9 @@ export const useFoldLink = (selectSortName: number) => {
 
   useEffect(() => {
     const fetchFolders = async () => {
+      const userId = 1;
       try {
-        const result = await ShowAll();
+        const result = await showAll(userId);
         let filteredLink = result;
 
         if (selectSortName !== 0) {

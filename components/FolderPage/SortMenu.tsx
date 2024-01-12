@@ -1,6 +1,5 @@
 import { useState } from "react";
 import * as S from "./Styled";
-import "../../styles/indexCss.module.css";
 import { AddFolderModal } from "./modal/index";
 import { FolderData } from "../../pages/folder/type";
 

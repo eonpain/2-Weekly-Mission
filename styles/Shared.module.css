@@ -129,11 +129,6 @@
   line-height: normal;
 }
 
-/* article {
-  padding-top: 7rem;
-  padding-bottom: 12rem;
-} */
-
 .articleContainer {
   display: flex;
   flex-direction: column;
@@ -173,15 +168,6 @@
   grid-template-columns: repeat(3, 1fr); /* 3열로 설정 */
   gap: 25px 20px; /* 아이템 간 여백 조절 */
 }
-
-/* footer {
-  display: flex;
-  justify-content: center;
-  width: 100%;
-  height: 16rem;
-  padding-top: 3.2rem;
-  background-color: var(--black);
-} */
 
 .footer-box {
   display: flex;
@@ -335,14 +321,6 @@
   .cardBox {
     grid-template-columns: repeat(1, 1fr);
   }
-
-  /* section {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    justify-content: center;
-    padding: 40px 32px;
-  } */
 }
 
 @media (max-width: 375px) {

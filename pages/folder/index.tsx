@@ -1,9 +1,7 @@
-import FolderPage from '../../components/Folder/Folder';
+import FolderPage from "../../components/FolderPage/Folder";
 
 function Folder() {
-    return(
-        <FolderPage />
-    )
+  return <FolderPage />;
 }
 
-export default Folder
+export default Folder;

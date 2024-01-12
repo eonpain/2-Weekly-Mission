@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import * as S from "../../../components/Folder/Styled";
+import * as S from "../../../components/FolderPage/Styled";
 import { useRouter } from "next/router";
 
 function Search() {

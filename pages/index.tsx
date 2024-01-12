@@ -1,13 +1,11 @@
-import { useRouter } from 'next/router';
-import { useEffect } from 'react';
-import Folder from '../components/Folder/Folder';
-import Shared from '../components/Shared/Shared';
+import Folder from "../components/FolderPage/Folder";
 
-function Home() {
+function home() {
   return (
     <>
       <Folder />
     </>
-  );}
+  );
+}
 
-export default Home;
+export default home;

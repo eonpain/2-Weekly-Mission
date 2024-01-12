@@ -1,45 +1,3 @@
-/* * {
-  box-sizing: border-box;
-  margin: 0;
-  font-family: "Pretendard";
-}
-
-html,
-body {
-  font-size: 62.5%;
-}
-
-body {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-} */
-
-/* a {
-  color: inherit;
-  text-decoration: none;
-  cursor: pointer;
-} */
-/* 
-input:focus {
-  outline: none;
-}
-
-button {
-  border: none;
-  padding: unset;
-  background-color: unset;
-  cursor: pointer;
-} */
-
-/* nav {
-  display: flex;
-  justify-content: center;
-  top: 0;
-  width: 100%;
-  background-color: #edf7ff;
-} */
-
 .gnb {
   display: flex;
   justify-content: space-between;
@@ -49,29 +7,6 @@ button {
   max-width: 192rem;
   padding: 0 20rem;
 }
-
-/* :root {
-  --primary: #6d6afe;
-  --red: #ff5b56;
-  --black: #111322;
-  --white: #ffffff;
-  --purple-70: #8f00ff;
-
-  --gray100: #373740;
-  --gray60: #9fa6b2;
-  --gray20: #ccd5e3;
-  --gray10: #e7effb;
-
-  --background: #f0f6ff;
-} */
-
-/* header {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  width: 100%;
-  background-color: #edf7ff;
-} */
 
 .profileBox {
   display: flex;

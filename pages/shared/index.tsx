@@ -1,4 +1,4 @@
-import SharedPage from '../../components/Shared/Shared';
+import SharedPage from '../../components/SharedPage/Shared';
 
 function Shared() {
     return(

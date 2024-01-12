@@ -24,7 +24,7 @@ function Shared() {
       <Section />
       <Search />
       <div className={styles.cardBox}>
-        {cardUser && cardUser.map((data) => <Card key={data.id} data={data} />)}
+      {cardUser ? cardUser.map((data) => <Card key={data.id} data={data} />) : null}
       </div>
       <Footer></Footer>
     </>

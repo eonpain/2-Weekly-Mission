@@ -1,4 +1,4 @@
-import SigninPage from '../../components/Signin/index';
+import SigninPage from '../../components/SigninPage';
 
 function Signin() {
   return <SigninPage />;

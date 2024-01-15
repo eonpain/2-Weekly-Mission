@@ -1,40 +1,49 @@
-import { ComponentPropsWithRef } from "react";
+import { ComponentPropsWithRef, useEffect } from "react";
 import { useInput } from "../../FolderPage/hooks/useInput";
 import Icon from "../Icon";
 import styles from "./input.module.css";
-
 interface Props
   extends Omit<ComponentPropsWithRef<"input">, "type" | "className"> {
-  type?: "text" | "password";
-  error?: string | boolean;
+  type?: "text" | "password" | "passwordConfirm";
 }
 
 export default function Input({
   type = "password",
-  error,
-  onBlur,
+  // onBlur,
   ...props
 }: Props) {
   const {
     inputType,
     passwordVisible,
+    handleSignup,
+    handleSignin,
     handleClickPasswordToggle,
-    handleBlurInput,
+    // handleBlurInput,
+    handleBlurSignup,
+    // errorMessage,
   } = useInput({ type, onBlur });
+
+  // const hasError = !!errorMessage;
+
+  // const handleInputBlur = (e: React.FocusEvent<HTMLInputElement>) => {
+  //   handleBlurInput(e);
+  //   onBlur && onBlur(e);
+  // };
+
+  const handleSignupBlur = (e: React.FocusEvent<HTMLInputElement>) => {
+    handleBlurSignup(e);
+  };
 
   return (
     <div className={styles.container}>
-      <div
-        className={styles.input_wrapper}
-        data-isError={error === "" || !!error}
-      >
+      <div className={styles.input_wrapper}>
         <input
           className={styles.input}
           type={inputType}
-          onBlur={handleBlurInput} // useInput 훅에서 반환한 onBlur 함수를 사용
+          // onBlur={type === "password" && handleSignupBlur }
           {...props}
         />
-        {type === "password" ? (
+        {type !== "text" ? (
           <button
             type="button"
             onClick={handleClickPasswordToggle}
@@ -47,9 +56,9 @@ export default function Input({
           </button>
         ) : null}
       </div>
-      {error && typeof error === "string" ? (
-        <small className={styles.error_message}>{error}</small>
-      ) : null}
+      {/* {hasError ? (
+        <small className={styles.error_message}>{errorMessage}</small>
+      ) : null} */}
     </div>
   );
 }

@@ -1,46 +1,49 @@
-import { ComponentPropsWithRef, FocusEvent, useState } from "react";
+import { ComponentPropsWithRef, useEffect } from "react";
+import { useInput } from "../../FolderPage/hooks/useInput";
 import Icon from "../Icon";
-import styles from "./Input.module.css";
-
+import styles from "./input.module.css";
 interface Props
   extends Omit<ComponentPropsWithRef<"input">, "type" | "className"> {
-  type?: "text" | "password";
-  error?: string | boolean;
+  type?: "text" | "password" | "passwordConfirm";
 }
 
 export default function Input({
-  type = "text",
-  error,
-  onBlur = () => {},
+  type = "password",
+  // onBlur,
   ...props
 }: Props) {
-  const [passwordVisible, setPasswordVisible] = useState(false);
-  const handleClickPasswordToggle = () => {
-    setPasswordVisible((pv) => !pv);
-  };
-  let inputType = "text";
+  const {
+    inputType,
+    passwordVisible,
+    handleSignup,
+    handleSignin,
+    handleClickPasswordToggle,
+    // handleBlurInput,
+    handleBlurSignup,
+    // errorMessage,
+  } = useInput({ type, onBlur });
 
-  if (type === "password") {
-    inputType = passwordVisible ? "text" : "password";
-  }
+  // const hasError = !!errorMessage;
 
-  const handleBlurInput = (e: FocusEvent<HTMLInputElement>) => {
-    onBlur(e);
+  // const handleInputBlur = (e: React.FocusEvent<HTMLInputElement>) => {
+  //   handleBlurInput(e);
+  //   onBlur && onBlur(e);
+  // };
+
+  const handleSignupBlur = (e: React.FocusEvent<HTMLInputElement>) => {
+    handleBlurSignup(e);
   };
 
   return (
     <div className={styles.container}>
-      <div
-        className={styles.input_wrapper}
-        data-isError={error === "" || !!error}
-      >
+      <div className={styles.input_wrapper}>
         <input
           className={styles.input}
           type={inputType}
-          onBlur={handleBlurInput}
+          // onBlur={type === "password" && handleSignupBlur }
           {...props}
         />
-        {type === "password" ? (
+        {type !== "text" ? (
           <button
             type="button"
             onClick={handleClickPasswordToggle}
@@ -53,10 +56,9 @@ export default function Input({
           </button>
         ) : null}
       </div>
-      {error && typeof error === "string" ? (
-        <small className={styles.error_message}>{error}</small>
-      ) : null}
+      {/* {hasError ? (
+        <small className={styles.error_message}>{errorMessage}</small>
+      ) : null} */}
     </div>
   );
 }
-

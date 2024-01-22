@@ -83,13 +83,13 @@ function Folder() {
       }
     }, [folderId]);
 
-    useEffect(() => {
-      const accessToken = localStorage.getItem("accessToken");
-      if (!accessToken) {
-        router.replace("/signin");
-      } else {
-      }
-    }, []);
+    // useEffect(() => {
+    //   const accessToken = localStorage.getItem("accessToken");
+    //   if (!accessToken) {
+    //     router.replace("/signin");
+    //   } else {
+    //   }
+    // }, []);
 
   const handleModalClick = (content: string) => {
     setModalContent(content);
@@ -100,6 +100,11 @@ function Folder() {
     setModalContent(null);
     setModalOpen(false);
   };
+
+  // useEffect(()=> {
+  //   onSigninUserData();
+  // },[])
+  
 
   const isSorted = foldLinkTitle !== "전체";
 

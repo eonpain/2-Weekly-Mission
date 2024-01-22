@@ -1,9 +1,7 @@
-import SharedPage from '../../components/SharedPage/Shared';
+import SharedDefault from "@/components/SharedPage/SharedDefault";
 
-function Shared() {
-    return(
-        <SharedPage />
-    )
+function SharedDefaultPage() {
+    return <SharedDefault />
 }
 
-export default Shared
+export default SharedDefaultPage;

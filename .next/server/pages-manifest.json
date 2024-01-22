@@ -1,7 +1,10 @@
 {
   "/_app": "pages/_app.js",
-  "/_error": "pages/_error.js",
   "/_document": "pages/_document.js",
-  "/folder": "pages/folder.js",
-  "/signup": "pages/signup.js"
+  "/_error": "pages/_error.js",
+  "/signin": "pages/signin.js",
+  "/": "pages/index.js",
+  "/shared/[folderId]": "pages/shared/[folderId].js",
+  "/shared": "pages/shared.js",
+  "/folder/[[...folderId]]": "pages/folder/[[...folderId]].js"
 }

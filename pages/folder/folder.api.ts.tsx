@@ -42,3 +42,14 @@ export async function showAll(userId: number): Promise<LinkData[]> {
     throw error;
   }
 }
+
+export async function getFolders(){
+  try {
+    const url = `folders`;
+    const response = await axiosInstance.get(url);
+    return response.data.data;
+  } catch (error) {
+    console.error('Error fetching links data:', error);
+    throw error;
+  }
+}

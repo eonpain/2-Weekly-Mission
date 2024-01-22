@@ -1,11 +1,3 @@
-import Folder from "../components/FolderPage/Folder";
-
-function home() {
-  return (
-    <>
-      <Folder />
-    </>
-  );
+export default function Home() {
+  return<></>
 }
-
-export default home;

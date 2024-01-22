@@ -1,19 +1,19 @@
 import styles from "../../styles/Shared.module.css";
 import React, { useState, useEffect } from "react";
 
-function Section() {
-  const [userData, setUserData] = useState(null);
+function Section({folderData, userData}) {
+  // const [userData, setUserData] = useState(null);
 
-  useEffect(() => {
-    fetch("https://bootcamp-api.codeit.kr/api/sample/folder")
-      .then((response) => response.json())
-      .then((data) => {
-        setUserData(data);
-      })
-      .catch((error) => {
-        console.error("Error fetching user data:", error);
-      });
-  }, []);
+  // useEffect(() => {
+  //   fetch("https://bootcamp-api.codeit.kr/api/sample/folder")
+  //     .then((response) => response.json())
+  //     .then((data) => {
+  //       setUserData(data);
+  //     })
+  //     .catch((error) => {
+  //       console.error("Error fetching user data:", error);
+  //     });
+  // }, []);
 
   return (
     <>
@@ -22,11 +22,11 @@ function Section() {
           <div className={styles.sectionContent}>
               <img
               className={styles.userprofileimg}
-                src={userData.folder.owner.profileImageSource}
+                src={userData.profileImage}
                 alt="유저프로필사진"
               />
-            <span className={styles.userName}>{userData.folder.owner.name}</span>
-            <span className={styles.favorite}>{userData.folder.name}</span>
+            <span className={styles.userName}>{userData.ownerName}</span>
+            <span className={styles.favorite}>{folderData.name}</span>
           </div>
         ) : null}
       </div>

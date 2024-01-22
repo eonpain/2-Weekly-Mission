@@ -1,19 +1,18 @@
 import { useState, useEffect } from "react";
 import { useRouter } from "next/router";
-import { showAll } from "../../../pages/folder/folder.api.ts";
-import { LinkData } from "../../../pages/folder/type";
+import { showAll } from "@/pages/folder/folder.api.ts";
+import { LinkData } from "@/pages/folder/type";
 
-export const useFoldLink = (selectSortName: number) => {
-  const [foldLink, setFoldLink] = useState<LinkData[]>([]);
+export const useFoldLink = (selectSortName: number, userId: number | undefined) => {
   const router = useRouter();
   const { query } = router;
   const searchValue = query.search as string | undefined;
+  const [foldLink, setFoldLink] = useState<LinkData[]>([]);
 
   useEffect(() => {
     const fetchFolders = async () => {
-      const userId = 1;
       try {
-        const result = await showAll(userId);
+        const result = await showAll(userId || 1);
         let filteredLink = result;
 
         if (selectSortName !== 0) {
@@ -38,7 +37,7 @@ export const useFoldLink = (selectSortName: number) => {
     };
 
     fetchFolders();
-  }, [selectSortName, searchValue]);
+  }, [selectSortName, searchValue, userId]);
 
   return foldLink;
 };

@@ -1,14 +1,9 @@
-import React,{ useState, FocusEvent, ComponentPropsWithRef } from "react";
-interface UseInputProps extends Omit<ComponentPropsWithRef<"input">, "type"> {
-  initialValue?: string;
-  type?: "text" | "password" | "passwordConfirm";
-  onBlur?: (e: FocusEvent<HTMLInputElement>) => void;
-}
+import React,{ useState } from "react";
 
-export const useInput = ({ type = "password", onBlur, onChange }: UseInputProps = {}) => {
+export const useInput = () => {
   const [passwordVisible, setPasswordVisible] = useState(false);
   const handleClickPasswordToggle = () => {
-    setPasswordVisible((pv) => !pv);
+    setPasswordVisible((prev) => !prev);
   };
 
   return {

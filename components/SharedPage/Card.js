@@ -47,11 +47,6 @@ function Card({ data }) {
           <div className={styles.cardImgWrap}>
             {data.imageSource === undefined ? (
               <>
-                {/* <img
-                  src={`${imgNull}`}
-                  alt={`${data.title}`}
-                  className={styles.nullImg}
-                /> */}
                 <img src={'/assets/Icon/logo.svg'} alt="logo" className={styles.nullImg} />
               </>
             ) : (

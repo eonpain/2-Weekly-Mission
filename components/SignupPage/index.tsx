@@ -24,10 +24,7 @@ function Signup({ type = "password", onBlur, ...props }: Props) {
   const [emailError, setEmailError] = useState<string | boolean>("");
   const [matchError, setMatchError] = useState<string | boolean>("");
 
-  const {
-    handleClickPasswordToggle,
-    passwordVisible,
-  } = useInput();
+  const { handleClickPasswordToggle, passwordVisible } = useInput();
 
   const router = useRouter();
   const hasMatchError = !!isPasswordMatch;
@@ -45,10 +42,9 @@ function Signup({ type = "password", onBlur, ...props }: Props) {
 
   const emailVal = watch("email");
   const passwordVal = watch("password");
-  const passwordConfirmVal = watch('passwordConfirm');
+  const passwordConfirmVal = watch("passwordConfirm");
 
   const handleConfirmPasswordChange = () => {
-    // const confirmPassword = passwordConfirmVal;
     const isMatch = passwordConfirmVal !== passwordVal;
     setIsPasswordMatch(isMatch);
     setMatchError("비밀번호가 일치하지 않습니다");
@@ -95,7 +91,8 @@ function Signup({ type = "password", onBlur, ...props }: Props) {
       const response = await signup(userData);
       console.log(response);
       if (response) {
-        localStorage.setItem("sign", response.data.data.accessToken);
+        const accessToken = response.data.data.accessToken;
+        localStorage.setItem("accessToken", accessToken);
         router.push("/folder");
         console.log("POST 요청이 성공했습니다.");
       }
@@ -108,12 +105,12 @@ function Signup({ type = "password", onBlur, ...props }: Props) {
     }
   };
 
-  useEffect(() => {
-    const LocalStorage = localStorage.getItem("sign");
-    if (LocalStorage !== null) {
-      router.push("/folder");
-    }
-  }, []);
+  // useEffect(() => {
+  //   const LocalStorage = localStorage.getItem("accessToken");
+  //   if (LocalStorage !== null) {
+  //     router.push("/folder");
+  //   }
+  // }, []);
 
   return (
     <S.Container>

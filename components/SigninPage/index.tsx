@@ -1,4 +1,4 @@
-import { ComponentPropsWithRef, useState, FocusEvent, useEffect } from "react";
+import { ComponentPropsWithRef, useState, FocusEvent, useEffect, useContext } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { useRouter } from "next/router";
 import * as S from "./styled";
@@ -7,6 +7,7 @@ import { useInput } from "../FolderPage/hooks/useInput";
 import styles from "./input.module.css";
 import Icon from "@/components/common/Icon";
 import { signin } from "@/pages/signin/signin.api.ts";
+import { contextUserId } from "@/pages/_app";
 
 interface InputType {
   email: string;
@@ -17,11 +18,8 @@ function Signin() {
   const [errorMessage, setErrorMessage] = useState<string | boolean>("");
   const [emailError, setEmailError] = useState<string | boolean>("");
   const { handleClickPasswordToggle, passwordVisible } = useInput();
-
-  const router = useRouter();
   const hasError = !!errorMessage;
   const hasEmailError = !!emailError;
-  const {folderId} = router.query;
 
   const { register, handleSubmit, watch } = useForm<InputType>();
   const onSubmit: SubmitHandler<InputType> = (data) => {
@@ -31,6 +29,16 @@ function Signin() {
     };
     handleSignin(userData);
   };
+
+  const ContextUserId = useContext(contextUserId);
+  const router = useRouter();
+  useEffect(() => {
+    const accessToken = localStorage.getItem("accessToken");
+    if (accessToken !== null) {
+      router.push(`/folder/${ContextUserId}`);
+    }
+  }, []);
+
   const emailVal = watch("email");
   const passwordVal = watch("password");
 
@@ -66,32 +74,22 @@ function Signin() {
     }
     setEmailError(emailErrorMessage);
     setErrorMessage(newErrorMessage);
-    console.log(errorMessage);
   };
 
   const handleSignin = async (userData: any) => {
     try {
       const response = await signin(userData);
-      if (response) {
-        const accessToken = response.data.data.accessToken;
-        window.localStorage.setItem("accessToken", accessToken);
-
-        if (window.localStorage.getItem("accessToken")) {
-          router.push("/folder");
+      console.log(response);
+      if (response.status === 200) {
+        localStorage.setItem("accessToken", response.data.data.accessToken);
+          router.push(`/folder/${ContextUserId}`);
         }
-      }
     } catch (error) {
       console.error("로그인 실패", error);
       setErrorMessage("아이디 혹은 비밀번호가 잘못되었습니다.");
       setEmailError("아이디 혹은 비밀번호가 잘못되었습니다.");
     }
   };
-
-  if (typeof window !== "undefined") {
-    if (window.localStorage.getItem("accessToken")) {
-      router.push("/folder");
-    }
-  }
 
   return (
     <S.Container>

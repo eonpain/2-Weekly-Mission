@@ -46,7 +46,7 @@ function Shared() {
 
   return (
     <>
-      <Header />
+      {/* <Header /> */}
 
       <Section folderData={folder} userData={user} />
       <Search />
@@ -55,7 +55,7 @@ function Shared() {
           return <Card key={link.id} data={link} />;
         })}
       </div>
-      <Footer />
+      {/* <Footer /> */}
     </>
   );
 }

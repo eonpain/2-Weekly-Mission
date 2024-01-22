@@ -20,7 +20,7 @@ function SharedDefault() {
 
   return (
     <>
-      <Header />
+      {/* <Header /> */}
       <Section />
       <Search />
       <div className={styles.cardBox}>
@@ -28,7 +28,7 @@ function SharedDefault() {
           ? cardUser.map((data) => <Card key={data.id} data={data} />)
           : null}
       </div>
-      <Footer />
+      {/* <Footer /> */}
     </>
   );
 }

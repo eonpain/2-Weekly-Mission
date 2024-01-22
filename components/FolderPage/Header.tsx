@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import * as S from "./Styled";
 import { profileApi } from "../../pages/folder/folder.api.ts";
 import { ProfileData } from "../../pages/folder/type";
+import LogoutButton from "./LogoutButton";
 
 function Header({userData}: any) {
   const [profileData, setProfileData] = useState<ProfileData | null>(null);
@@ -40,7 +41,7 @@ function Header({userData}: any) {
           {userData && (
             <S.ProfileBox>
               <S.ProfileBoxImg
-                src={userData.profileImage}
+                src={userData.image_source}
                 alt="프로필 로고"
               />
               <S.ProfileText>
@@ -48,6 +49,7 @@ function Header({userData}: any) {
               </S.ProfileText>
             </S.ProfileBox>
           )}
+          <LogoutButton />
         </S.Gnd>
       </S.Nav>
     </>

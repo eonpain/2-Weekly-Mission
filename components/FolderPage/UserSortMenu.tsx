@@ -25,7 +25,7 @@ const SortMenu: React.FC<SortMenuProps> = ({
     setModalContent(null);
     setModalOpen(false);
   };
-console.log(data);
+  console.log(data);
   return (
     <>
       <S.SortContainer>
